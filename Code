@@ -1,0 +1,77 @@
+"#Creare de baze de date"
+Create database CinemaTMTA12;
+Use CinemaTMTA12;
+
+Create table Filme 
+(
+ID int not null auto_increment, 
+NumeFilm varchar(50) not null,
+IDGen int not null,
+Datastart date,
+Datafinal date,
+Durata int,
+IDRating int,
+IDSala int,
+primary key(ID)
+); 
+
+"#(*) inseamna select all"
+select * from Filme;
+
+desc filme;
+
+create table Gen
+(
+ID int not null,
+TipGen varchar(15)
+);
+
+rename table Gen to GenulFilmului;
+
+"#am modificat tipul unei coloane"
+alter table GenulFilmului
+modify TipGen varchar(20);
+
+
+alter table GenulFilmului
+change TipGen Gen varchar(20);
+
+alter table GenulFilmului
+drop column Gen;
+
+alter table GenulFilmului
+add TipGen varchar(20);
+
+alter table GenulFilmului
+add primary key(ID);
+
+desc GenulFilmului;
+
+create table Sali
+(
+ID int not null auto_increment primary key,
+Nr_LocuriTotale int,
+Nr_LocuriDisponibile int,
+Vip bool
+);
+
+create table Rating
+(
+ID int not null auto_increment primary key,
+ValoareRating int
+);
+
+create table Test
+(
+ID int
+);
+ drop table Test;
+ 
+ alter table Filme
+ add  foreign key(IDGen) references GenulFilmului(ID);
+ 
+ alter table Filme
+ add foreign key(IDSala) references rating(ID);
+ 
+  alter table Filme
+ add foreign key(IDRating) references rating(ID);
